@@ -1,0 +1,19 @@
+.button {
+	padding: 6px 13px;
+	border-radius: 10px;
+	font-weight: 700;
+	font-size: 16px;
+	&__up {
+		color: #ff00a1;
+		background-color: #fff;
+	}
+	&__in {
+		color: #fff;
+		background-color: #ff00a1;
+	}
+	transition: 0.4s;
+	&:hover {
+		transition: 0.4s;
+		background: transparent;
+	}
+}

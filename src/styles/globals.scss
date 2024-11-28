@@ -1,0 +1,21 @@
+@use './reset' as *;
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+
+body {
+	background: linear-gradient(
+		145.69deg,
+		rgba(16, 16, 243, 0.87) -18.67%,
+		#6900d9 25.53%,
+		rgba(150, 182, 173, 0.66) 85.19%,
+		#501919 117.09%
+	);
+	color: #fff;
+}
+.wrapper {
+	width: 1440px;
+	margin: 0 auto;
+}
