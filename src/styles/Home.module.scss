@@ -17,3 +17,34 @@
 		}
 	}
 }
+
+.greeting {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80dvh;
+	padding: 20px;
+	text-align: center;
+	&__wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 740px;
+	}
+	&__content {
+		padding: 0px 80px;
+		height: 400px;
+	}
+	&__subtitle {
+		font-size: 48px;
+		margin-bottom: 60px;
+	}
+	&__title {
+		font-size: 82px;
+		margin-bottom: 50px;
+	}
+}
+.svg-circle {
+	position: absolute;
+}
