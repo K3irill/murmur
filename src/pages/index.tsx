@@ -4,9 +4,9 @@ import styles from '@/styles/Home.module.scss'
 import cn from 'classnames'
 import SignButton from '@/components/ui/buttons/sign.button/SignButton'
 import Link from 'next/link'
-import { Monoton } from 'next/font/google'
+// import { Monoton } from 'next/font/google'
 //-----------------------------------------------------------------------------
-const monoton = Monoton({ weight: '400', subsets: ['latin'] })
+// const monoton = Monoton({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
 	return (
@@ -42,9 +42,7 @@ export default function Home() {
 							<SvgCircle />
 							<div className={cn(styles.greeting__content)}>
 								<h2 className={cn(styles.greeting__subtitle)}>Welcome to</h2>
-								<h1 className={cn(styles.greeting__title, monoton.className)}>
-									MurMur
-								</h1>
+								<h1 className={cn(styles.greeting__title)}>MurMur</h1>
 								<h3 className={cn(styles.greeting__text)}>
 									MurMur - уникальное приложение для голосовых звонков с
 									возможностью уединения в групповых чатах. Общайся с друзьями и
