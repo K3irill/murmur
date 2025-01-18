@@ -4,11 +4,51 @@ import styles from '@/styles/Home.module.scss'
 import cn from 'classnames'
 import SignButton from '@/components/ui/buttons/sign.button/SignButton'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 // import { Monoton } from 'next/font/google'
 //-----------------------------------------------------------------------------
 // const monoton = Monoton({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
+	const router = useRouter()
+	const [user, setUser] = useState(null)
+	const [isAuth, setAuth] = useState(false)
+	useEffect(() => {
+		;(async () => {
+			try {
+				const res = await fetch('http://localhost:8000/api/user', {
+					credentials: 'include',
+				})
+				const data = await res.json()
+				if (res.status === 200) {
+					setAuth(true)
+					setUser(data)
+				}
+				console.log(data)
+			} catch (error: any) {
+				console.log(error.message)
+				setAuth(false)
+			}
+		})()
+	}, [])
+
+	const onLogout = async () => {
+		try {
+			const res = await fetch('http://localhost:8000/api/logout', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				credentials: 'include',
+			})
+			if (res.status === 200) {
+				setAuth(false)
+				router.push('/login')
+			}
+		} catch (error: any) {
+			console.log(error.message)
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -30,8 +70,14 @@ export default function Home() {
 								/>
 							</Link>
 							<nav className={cn(styles.header__navigation)}>
-								<SignButton href='/login' text='Sign Up' type='up' />
-								<SignButton href='/login' text='Sign In' type='in' />
+								{!isAuth ? (
+									<>
+										<SignButton href='/register' text='Sign Up' type='up' />
+										<SignButton href='/login' text='Sign In' type='in' />
+									</>
+								) : (
+									<button onClick={onLogout}>Logout</button>
+								)}
 							</nav>
 						</div>
 					</div>
@@ -49,9 +95,15 @@ export default function Home() {
 									переключайся между режимами общения, чтобы слегка отойти, быть
 									с кем-то наедине или слушать всех одновременно
 								</h3>
-								<button className={cn(styles.greeting__button)}>
-									Зарегестрироваться
-								</button>
+								{isAuth && user ? (
+									<h2 className={cn(styles.greeting__subtitle)}>
+										Hi {user.name}
+									</h2>
+								) : (
+									<button className={cn(styles.greeting__button)}>
+										Зарегестрироваться
+									</button>
+								)}
 							</div>
 						</div>
 					</div>

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+
 const FormStyled = styled.form`
 		display: flex;
 		flex-direction: column;
@@ -19,28 +20,28 @@ const FormStyled = styled.form`
 
 		}
 `
-const Login = () => {
+
+const Register = () => {
 	const router = useRouter()
 
+	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		try {
 			setLoading(true)
-			const res = await fetch('http://localhost:8000/api/login', {
+			const res = await fetch('http://localhost:8000/api/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				credentials: 'include',
-				body: JSON.stringify({ email, password }),
+				body: JSON.stringify({ name, email, password }),
 			})
 			if (res.status === 200) {
-				router.push('/')
+				router.push('/login')
 			}
 		} catch (error: any) {
 			setError(error.message)
@@ -81,8 +82,15 @@ const Login = () => {
 						<div className={cn(styles.greeting__wrapper, 'wrapper')}>
 							<div className={cn(styles.greeting__content)}>
 								<FormStyled onSubmit={handleSubmit}>
-									<legend>Sign In</legend>
-
+									<legend>Sign Up</legend>
+									<label>
+										<p>Name</p>
+										<input
+											value={name}
+											onChange={e => setName(e.target.value)}
+											type='text'
+										/>
+									</label>
 									<label>
 										<p>Email</p>
 										<input
@@ -101,7 +109,7 @@ const Login = () => {
 									</label>
 									{error && <p>{error}</p>}
 									<button type='submit'>
-										{loading ? 'loading...' : 'Login'}
+										{loading ? 'loading...' : 'Register'}
 									</button>
 								</FormStyled>
 							</div>
@@ -113,4 +121,4 @@ const Login = () => {
 	)
 }
 
-export default Login
+export default Register
