@@ -1,9 +1,17 @@
+import Head from 'next/head'
+import Image from 'next/image'
+import styles from '@/styles/Home.module.scss'
+import cn from 'classnames'
+import SignButton from '@/components/ui/buttons/sign.button/SignButton'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Layout from '@/components/layouts/Layout'
+import { GreetingModule } from '@/modules/Greeting'
 
 //-----------------------------------------------------------------------------
 
-export default function Home() {
+export default function Greeting() {
 	// const router = useRouter()
 	// const [user, setUser] = useState(null)
 	// const [isAuth, setAuth] = useState(false)
@@ -42,5 +50,9 @@ export default function Home() {
 	// 	}
 	// }
 
-	return <></>
+	return (
+		<>
+			<GreetingModule />
+		</>
+	)
 }

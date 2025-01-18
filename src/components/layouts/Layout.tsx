@@ -1,15 +1,15 @@
+import { ILayoutProps } from './Layout.d'
 import Head from 'next/head'
 import React, { FunctionComponent, PropsWithChildren } from 'react'
+import Header from '../Header/Header'
+import { useSelector } from 'react-redux'
 
-const Layout: FunctionComponent = ({
-	children,
-}: PropsWithChildren): JSX.Element => {
+const Layout: FunctionComponent<ILayoutProps> = ({ children }): JSX.Element => {
+	// const {isAuth} = useSelector((state: RootState) => state.auth)
+
 	return (
 		<>
-			<Head>
-				<title>Murka</title>
-				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
-			</Head>
+			<Header isAuth={false} />
 			<main>{children}</main>
 		</>
 	)

@@ -3,6 +3,7 @@
 	border-radius: 10px;
 	font-weight: 700;
 	font-size: 16px;
+	transition: all 0.4s;
 	&__up {
 		color: #ff00a1;
 		background-color: #fff;
@@ -11,9 +12,7 @@
 		color: #fff;
 		background-color: #ff00a1;
 	}
-	transition: 0.4s;
 	&:hover {
-		transition: 0.4s;
 		background: transparent;
 	}
 }
