@@ -16,14 +16,20 @@ export const WrapperStyled = styled.div`
 	width: 740px;
 `
 export const ContentStyled = styled.div`
-	padding: 0px 80px;
+	position: relative;
+	z-index: 1;
+	padding: 0px 90px;
 	height: 400px;
 `
-export const SubtitleStyled = styled.h2`
-	font-size: 48px;
-	margin-bottom: 60px;
-`
 export const TitleStyled = styled.h1`
-	font-size: 82px;
-	margin-bottom: 50px;
+	font-family: 'Monoton';
+	font-size: 72px;
+	line-height: 82px;
+	margin-bottom: 30px;
+`
+export const SubtitleStyled = styled.h2`
+	margin-bottom: 30px;
+`
+export const TextStyled = styled.h2`
+	margin-bottom: 40px;
 `

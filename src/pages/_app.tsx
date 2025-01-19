@@ -13,7 +13,7 @@ import useBackground from '@/hooks/useBackgroundSwitcher'
 import BackgroundSwitcher from '@/utils/constants/background'
 
 export default function App({ Component, pageProps }: AppProps) {
-	// useRedirect()
+	useRedirect()
 	const background = useBackground()
 	return (
 		<Provider store={store}>

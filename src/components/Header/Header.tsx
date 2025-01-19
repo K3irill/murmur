@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { IHeaderProps } from './Header.d'
 import { Container } from '../Container'
 import SignButton from '../ui/buttons/sign.button/SignButton'
+import { Title } from '../Title'
 
 const Header: FunctionComponent<IHeaderProps> = ({ isAuth }): JSX.Element => {
 	const onLogout = () => {}
@@ -13,7 +14,8 @@ const Header: FunctionComponent<IHeaderProps> = ({ isAuth }): JSX.Element => {
 			<Container>
 				<ContentStyled>
 					<LogoStyled href='/'>
-						<Image src='/logo.svg' alt='MurMur' width={150} height={60} />
+						{/* <Image src='/logo.svg' alt='Murrka' width={150} height={60} /> */}
+						<Title size='6'>Murrka</Title>
 					</LogoStyled>
 					<NavStyled>
 						{!isAuth ? (

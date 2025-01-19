@@ -9,12 +9,17 @@ const api = axios.create({
 
 export const authService = {
 	async register(data: any) {
-		const response = await api.post('/register/', data)
+		const response = await api.post('/register', data)
 		return response.data
 	},
 
 	async login(data: any) {
-		const response = await api.post('/login/', data)
+		const response = await api.post('/login', data)
+		return response.data
+	},
+
+	async logout(data: any) {
+		const response = await api.post('/logout', data)
 		return response.data
 	},
 }

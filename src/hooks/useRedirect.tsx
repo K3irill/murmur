@@ -3,7 +3,12 @@ import React, { useEffect, useRef } from 'react'
 
 const useRedirect = () => {
 	const router = useRouter()
-
+	if (
+		router.pathname === '/greeting' &&
+		router.pathname === '/login' &&
+		router.pathname === '/register'
+	)
+		return
 	useEffect(() => {
 		const fetchAuth = async () => {
 			const response = await fetch('/api/auth', {

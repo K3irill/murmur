@@ -7,18 +7,8 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-const FormStyled = styled.form`
-		display: flex;
-		flex-direction: column;
-		gap; 10px;
-		border: 1px solid #000;
-		input {
-			padding: 10px;
-			border: 1px solid #8619bd;
-			outline: none;
+import { LoginModule } from '@/modules/Login'
 
-		}
-`
 const Login = () => {
 	const router = useRouter()
 
@@ -49,7 +39,11 @@ const Login = () => {
 		}
 	}
 
-	return <></>
+	return (
+		<>
+			<LoginModule type={'login'} />
+		</>
+	)
 }
 
 export default Login
