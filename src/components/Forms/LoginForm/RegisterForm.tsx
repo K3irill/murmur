@@ -10,23 +10,12 @@ import { COLORS } from '@/utils/constants'
 import { Button } from '@/components/ui/buttons/Button/Button'
 import { register } from '@/store/slices/auth.slice'
 import { useRouter } from 'next/router'
-
-const schema = z.object({
-	name: z
-		.string()
-		.min(1, 'Name is required')
-		.min(2, 'Name must be at least 2 characters long'),
-	email: z.string().email('Invalid email format').min(1, 'Email is required'),
-	password: z
-		.string()
-		.min(1, 'Password is required')
-		.min(6, 'Password must be at least 6 characters long'),
-})
+import { schema } from './register.schema'
 
 type FormData = z.infer<typeof schema>
 
 const RegisterForm = () => {
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState<boolean>(false)
 	const dispatch = useDispatch()
 	const router = useRouter()
 	const {

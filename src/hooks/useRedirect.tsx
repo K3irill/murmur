@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-
+import Cookies from 'js-cookie'
 const useRedirect = () => {
 	const router = useRouter()
 	if (
@@ -10,18 +10,10 @@ const useRedirect = () => {
 	)
 		return
 	useEffect(() => {
-		const fetchAuth = async () => {
-			const response = await fetch('/api/auth', {
-				credentials: 'include',
-			})
-
-			if (!response.ok) {
-				router.push('/greeting')
-			}
+		if (Cookies.get('user') === 'undefined') {
+			router.push('/greeting')
 		}
-
-		fetchAuth()
-	}, [])
+	}, [router.pathname])
 }
 
 export default useRedirect

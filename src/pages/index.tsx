@@ -1,46 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 //-----------------------------------------------------------------------------
 
 export default function Home() {
-	// const router = useRouter()
-	// const [user, setUser] = useState(null)
-	// const [isAuth, setAuth] = useState(false)
-	// useEffect(() => {
-	// 	;(async () => {
-	// 		try {
-	// 			const res = await fetch('http://localhost:8000/api/user', {
-	// 				credentials: 'include',
-	// 			})
-	// 			const data = await res.json()
-	// 			if (res.status === 200) {
-	// 				setAuth(true)
-	// 				setUser(data)
-	// 			}
-	// 			console.log(data)
-	// 		} catch (error: any) {
-	// 			console.log(error.message)
-	// 			setAuth(false)
-	// 		}
-	// 	})()
-	// }, [])
-
-	// const onLogout = async () => {
-	// 	try {
-	// 		const res = await fetch('http://localhost:8000/api/logout', {
-	// 			method: 'POST',
-	// 			headers: { 'Content-Type': 'application/json' },
-	// 			credentials: 'include',
-	// 		})
-	// 		if (res.status === 200) {
-	// 			setAuth(false)
-	// 			router.push('/login')
-	// 		}
-	// 	} catch (error: any) {
-	// 		console.log(error.message)
-	// 	}
-	// }
-
-	return <></>
+	const { user } = useSelector((state: RootState) => state.auth)
+	if (!user) return 'no data'
+	return (
+		<>
+			<div>
+				<h1>{user.name}</h1>
+			</div>
+		</>
+	)
 }
