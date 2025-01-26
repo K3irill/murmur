@@ -1,9 +1,10 @@
+
 from rest_framework.views import APIView  
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer
 from .models import CustomUser
-import jwt, datetime
+import jwt, datetime, json
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -34,7 +35,7 @@ class LoginView(APIView):
 
 				response = Response()
 
-				response.set_cookie(key='jwt', value=token, httponly=True)
+				response.set_cookie(key='jwt', value=token, httponly=False, secure=False)
 
 				response.data = {
 					'id': user.id,
@@ -57,6 +58,10 @@ class UserView(APIView):
 			
 			user = CustomUser.objects.filter(id=payload['id']).first()
 			serializer = UserSerializer(user)
+			
+			response = Response()
+			user_data = json.dumps(serializer.data)
+			response.set_cookie(key='user', value=user_data, httponly=False, secure=False)
 
 			return Response(serializer.data)
 	
